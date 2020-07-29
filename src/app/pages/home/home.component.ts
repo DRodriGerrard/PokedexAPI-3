@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
   async getAllPokemon(){
     await this._pokemonS.getAllPokemon()
     .subscribe(response => {
-      response.results.forEach(async pokemonURL =>
-        await this._pokemonS.getAllPokemonData(pokemonURL.url)
+      response.results.forEach(pokemonURL =>
+        this._pokemonS.getAllPokemonData(pokemonURL.url)
         .subscribe(pokemonData => this.makePokemon(pokemonData))
       )
     })
