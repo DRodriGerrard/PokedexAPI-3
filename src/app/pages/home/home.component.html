@@ -1,1 +1,2 @@
 <app-navbar (generationEmitter)="getFilter($event)"></app-navbar>
+<app-pokemon *ngFor="let pokemon of finalPokemonList; index as i"[pokemon]="pokemon"></app-pokemon>
