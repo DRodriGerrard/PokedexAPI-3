@@ -1,0 +1,15 @@
+<select class="form-control-sm" [(ngModel)]="generationSelected" (ngModelChange)="emitFilter()">
+    <option *ngFor="let generation of pokemonGenerations; index as i" 
+    value="{{generation}}"
+    [id]="[i]">
+    {{generation}}
+    </option>
+</select>
+
+<select class="form-control-sm" [(ngModel)]="typeSelected" (ngModelChange)="emitFilter()">
+    <option *ngFor="let type of pokemonTypes; index as i" 
+    value="{{type}}"
+    [id]="[i]">
+    {{type}}
+    </option>
+</select>
