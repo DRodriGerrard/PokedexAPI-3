@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from 'src/app/pokemon';
 import { ThrowStmt } from '@angular/compiler';
@@ -13,6 +13,8 @@ export class PokemondetailComponent implements OnInit {
 
   @Input() pokemonDetail:Pokemon;
   @Input() pokeName:string;
+
+  @Output() pokemonEmitter = new EventEmitter();
 
   male = {
     front:'',
@@ -83,7 +85,9 @@ export class PokemondetailComponent implements OnInit {
   }
 
  
-
+  emitBack(){
+    this.pokemonEmitter.emit(this.pokemonDetail);
+  }
 
 
 }

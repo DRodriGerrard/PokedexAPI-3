@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   pokemonDetail:Pokemon;
   pokeName:string;
 
+  pokeSearch:string;
+
   constructor(private _pokemonS: PokemonService, private _routeR:Router) { }
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit {
   } 
 
   getFilter(dataFilter){
+
     this.finalPokemonList = [];
     const pokeFilterData = this.listPokemon.slice(dataFilter.start, dataFilter.end);
 
@@ -59,6 +62,7 @@ export class HomeComponent implements OnInit {
     else{
       this.finalPokemonList = pokeFilterData;
     }
+    dataFilter = '';
   }
 
   getPokemon(pokemonEvent){
@@ -70,7 +74,18 @@ export class HomeComponent implements OnInit {
     this.pokeName = pokeNameEvent;
   }
 
-  back(){
-    this.pokemonDetail = undefined;
+  back(data){
+    data = undefined;
+    this.pokemonDetail = data;
+  }
+
+  searchPokemon(pokemonNameOrNumber){
+    this.finalPokemonList = [];
+    
+    this.listPokemon.forEach(pokemon =>{
+      if(pokemon.name == pokemonNameOrNumber || pokemon.id == pokemonNameOrNumber){
+        this.finalPokemonList.push(pokemon);
+      }
+    })
   }
 }
