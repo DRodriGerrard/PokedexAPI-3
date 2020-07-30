@@ -1,15 +1,31 @@
-<select class="form-control-sm" [(ngModel)]="generationSelected" (ngModelChange)="emitFilter()">
-    <option *ngFor="let generation of pokemonGenerations; index as i" 
-    value="{{generation}}"
-    [id]="[i]">
-    {{generation}}
-    </option>
-</select>
-
-<select class="form-control-sm" [(ngModel)]="typeSelected" (ngModelChange)="emitFilter()">
-    <option *ngFor="let type of pokemonTypes; index as i" 
-    value="{{type}}"
-    [id]="[i]">
-    {{type}}
-    </option>
-</select>
+<div class="row">
+    <div class="col-">
+        <span>What Generation?</span>
+        <select class="form-control-sm" [(ngModel)]="generationSelected" (ngModelChange)="emitFilter()">
+            <option *ngFor="let generation of pokemonGenerations; index as i" 
+            value="{{generation.name}}"
+            [id]="[i]"
+            [disabled]="generation.selectable == false">
+            {{generation.name}}
+            </option>
+        </select>
+    </div>
+    <div class="col-">
+        <span>What type?</span>
+        <select class="form-control-sm" [(ngModel)]="typeSelected" (ngModelChange)="emitFilter()">
+            <option *ngFor="let type of pokemonTypes; index as i" 
+            value="{{type.name}}"
+            [id]="[i]"
+            [disabled]="type.selectable == false">
+            {{type.name}}
+            </option>
+        </select>
+    </div>
+    <div class="col-sm">
+        <button class="form-control-sm" type="button" (click)="emitSearch()">
+            <fa-icon [icon]="faSearch"></fa-icon>
+        </button>
+        <input class="form-control-sm" type="text" placeholder="Name or Number" aria-label="Search" [(ngModel)]="term" (keyup.enter)="emitSearch()">
+        
+    </div>
+</div>

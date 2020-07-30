@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -7,12 +8,48 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  @Output() generationEmitter = new EventEmitter();
+  faSearch = faSearch;
 
-  pokemonGenerations = ['All', 'I Gen', 'II Gen', 'III Gen', 'IV Gen', 'V Gen', 'VI Gen', 'VII Gen'];
+  @Output() generationEmitter = new EventEmitter();
+  @Output() searchEmitter = new EventEmitter();
+
+  term:string;
+
+  pokemonGenerations = [
+    { name: 'Select', selectable: false },
+    { name: 'All', selectable: true },
+    { name: 'I Gen', selectable: true },
+    { name: 'II Gen', selectable: true },
+    { name: 'III Gen', selectable: true },
+    { name: 'IV Gen', selectable: true },
+    { name: 'V Gen', selectable: true },
+    { name: 'VI Gen', selectable: true },
+    { name: 'VII Gen', selectable: true }
+  ]
   generationSelected = 'All';
 
-  pokemonTypes = ['All', 'normal', 'grass', 'fire', 'water', 'fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'steel', 'fairy'];
+  pokemonTypes = [
+    { name: 'Select', selectable: false },
+    { name: 'All', selectable: true },
+    { name: 'normal', selectable: true },
+    { name: 'grass', selectable: true },
+    { name: 'fire', selectable: true },
+    { name: 'water', selectable: true },
+    { name: 'fighting', selectable: true },
+    { name: 'flying', selectable: true },
+    { name: 'poison', selectable: true },
+    { name: 'ground', selectable: true },
+    { name: 'rock', selectable: true },
+    { name: 'bug', selectable: true },
+    { name: 'ghost', selectable: true },
+    { name: 'electric', selectable: true },
+    { name: 'psychic', selectable: true },
+    { name: 'ice', selectable: true },
+    { name: 'dragon', selectable: true },
+    { name: 'dark', selectable: true },
+    { name: 'steel', selectable: true },
+    { name: 'fairy', selectable: true }
+  ]
   typeSelected = 'All';
 
   start:number = 0;
@@ -66,6 +103,15 @@ export class NavbarComponent implements OnInit {
       type: this.typeSelected
     }
     this.generationEmitter.emit(dataFilter);
+    
+  }
+
+  emitSearch(){
+    if(this.term != undefined){
+      this.searchEmitter.emit(this.term);
+      this.generationSelected = 'Select';
+      this.typeSelected = 'Select';
+    }
   }
 
 }
