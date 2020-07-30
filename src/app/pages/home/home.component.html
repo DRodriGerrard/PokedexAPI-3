@@ -1,2 +1,11 @@
-<app-navbar (generationEmitter)="getFilter($event)"></app-navbar>
-<app-pokemon *ngFor="let pokemon of finalPokemonList; index as i"[pokemon]="pokemon"></app-pokemon>
+<h1><img src="../assets/images/logo-titulo.png"></h1>
+<div class="container">
+    <div class="navbar">
+        <app-navbar (generationEmitter)="getFilter($event)"></app-navbar>
+    </div>
+    <div class="listpokemon">
+        <div class="pokemon">
+            <app-pokemon *ngFor="let pokemon of finalPokemonList; index as i" [pokemon]="pokemon"></app-pokemon>
+        </div>
+    </div>
+</div>

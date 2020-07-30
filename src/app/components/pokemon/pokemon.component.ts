@@ -10,9 +10,25 @@ export class PokemonComponent implements OnInit {
 
   @Input() pokemon:Pokemon;
 
+  pokeName:string;
+  whereName: number;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.nameUpper();
   }
 
+  nameUpper(){
+    let name = '';
+    const upper = this.pokemon.name[0].toUpperCase();
+    this.whereName = this.pokemon.name.search('-');
+    if(this.whereName > -1){
+      name = this.pokemon.name.slice(1, this.whereName);
+    }
+    else{
+      name = this.pokemon.name.slice(1, this.pokemon.name.length);
+    }
+    this.pokeName = upper+name;
+  }
 }
