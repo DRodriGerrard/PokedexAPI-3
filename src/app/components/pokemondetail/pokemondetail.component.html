@@ -16,7 +16,8 @@
             <div class="col- images" [class]="pokemon.types[0].type.name">
                 <div class="male">
                     <img [src]="male.front" class="front">
-                    <img [src]="male.back" class="back">
+                    <img [src]="male.back" class="back" *ngIf="male.back != null">
+                    <div class="noback" *ngIf="male.back == null"><span>Not Back</span></div>
                     <p class="names">Male</p>
                 </div>
                 
