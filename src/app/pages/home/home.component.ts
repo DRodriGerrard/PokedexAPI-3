@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../../pokemon.service';
-import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../../pokemon';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,10 @@ export class HomeComponent implements OnInit {
   listPokemon:Pokemon[] = [];
   finalPokemonList:Pokemon[] = [];
 
-  constructor(private _pokemonS: PokemonService, private _httpS: HttpClient) { }
+  pokemonDetail:Pokemon;
+  pokeName:string;
+
+  constructor(private _pokemonS: PokemonService, private _routeR:Router) { }
 
   ngOnInit(): void {
     this.getAllPokemon();
@@ -55,5 +59,18 @@ export class HomeComponent implements OnInit {
     else{
       this.finalPokemonList = pokeFilterData;
     }
+  }
+
+  getPokemon(pokemonEvent){
+    this.pokemonDetail = pokemonEvent;
+    //this._routeR.navigate(['pokemon', this.pokemonDetail.name]);
+  }
+
+  getPokeName(pokeNameEvent){
+    this.pokeName = pokeNameEvent;
+  }
+
+  back(){
+    this.pokemonDetail = undefined;
   }
 }

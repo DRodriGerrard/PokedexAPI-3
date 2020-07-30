@@ -1,0 +1,75 @@
+<div class="pokemon">
+    <div class="header">
+        <h1 class="title"><span>{{number}}</span> {{pokeName}}</h1>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col- images" [class]="pokemon.types[0].type.name">
+                <div class="male">
+                    <img [src]="male.front" class="front">
+                    <img [src]="male.back" class="back">
+                    <p class="names">Male</p>
+                </div>
+                <div class="female">
+                    <img [src]="female.front" *ngIf="female.front != null" class="front">
+                    <img [src]="female.back" *ngIf="female.back != null" class="back">
+                    <p *ngIf="female.front != null" class="names">Female</p>
+                    <div class="no-female">
+                        <span *ngIf="female.front == null">There is no appreciable difference</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col- data-1">
+                <div class="data-1-1">
+                    <div class="row">
+                        <div class="col-sm">
+                            <h4>Types:</h4>
+                            <div class="types">
+                                <div [class]="pokemon.types[0].type.name" class="type">
+                                    <span>{{pokemon.types[0].type.name}}</span>
+                                </div>
+                                <div *ngIf="pokemon.types.length > 1" [class]="pokemon.types[1].type.name" class="type">
+                                    <!--{{pokemon.types[1].type.name[0].toUpperCase()}}{{pokemon.types[1].type.name.slice(1,pokemon.types[1].type.name.length)}}-->
+                                    <span>{{pokemon.types[1].type.name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <h4>Abilities:</h4>
+                            <span *ngFor="let ability of pokemon.abilities" class="capitalize">
+                                {{ability.ability.name}}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row row2">
+                        <div class="col-sm">
+                            <h4>Weight:</h4>
+                            <span class="capitalize">{{weight}}</span>
+                        </div>
+                        <div class="col-sm">
+                            <h4>Height:</h4>
+                            <span class="capitalize">{{height}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="data-2">
+            <h4>Base stats:</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th *ngFor="let stat of pokemon.stats" scope="col" class="capitalize" [class]="pokemon.types[0].type.name">
+                            {{stat.stat.name}}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td *ngFor="let stat of pokemon.stats">{{stat.base_stat}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

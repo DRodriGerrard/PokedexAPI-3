@@ -1,8 +1,9 @@
 <div class="card">
     <img class="card-img-top" [src]="pokemon.sprites.front_default" alt="Card image cap">
     <div class="card-body" [class]="pokemon.types[0].type.name">
+      <pre>{{number}}</pre>
       <h5 class="card-title">{{pokeName}}</h5>
       <p class="card-text"></p>
-      <button type="button" class="btn btn-light"><h6>Know it!</h6></button>
+      <button type="button" class="btn btn-light button" (click)="emitPokemon()"><h6>Know it!</h6></button>
     </div>
 </div>

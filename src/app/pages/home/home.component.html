@@ -1,11 +1,18 @@
-<h1><img src="../assets/images/logo-titulo.png"></h1>
-<div class="container">
+<h1><img src="../assets/images/logo-titulo.png" (click)="back()"></h1>
+<div class="container" *ngIf="pokemonDetail == undefined && finalPokemonList != []">
     <div class="navbar">
         <app-navbar (generationEmitter)="getFilter($event)"></app-navbar>
     </div>
     <div class="listpokemon">
         <div class="pokemon">
-            <app-pokemon *ngFor="let pokemon of finalPokemonList; index as i" [pokemon]="pokemon"></app-pokemon>
+            <app-pokemon *ngFor="let pokemon of finalPokemonList" 
+            [pokemon]="pokemon" 
+            (pokemonEmit)="getPokemon($event)"
+            (pokeNameEmit)="getPokeName($event)">
+        </app-pokemon>
         </div>
     </div>
+</div>
+<div class="container" *ngIf="pokemonDetail != undefined">
+    <app-pokemondetail [pokemonDetail]="pokemonDetail" [pokeName]="pokeName"></app-pokemondetail>
 </div>
