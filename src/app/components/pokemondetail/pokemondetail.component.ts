@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Pokemon } from 'src/app/pokemon';
-import { ThrowStmt } from '@angular/compiler';
 import { PokemonService } from 'src/app/pokemon.service';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-pokemondetail',
@@ -10,6 +9,8 @@ import { PokemonService } from 'src/app/pokemon.service';
   styleUrls: ['./pokemondetail.component.sass']
 })
 export class PokemondetailComponent implements OnInit {
+
+  faStar = faStar;
 
   @Input() pokemonDetail:Pokemon;
   @Input() pokeName:string;
@@ -52,7 +53,7 @@ export class PokemondetailComponent implements OnInit {
   changeImages(){
     if(this.male.front == this.pokemonDetail.sprites.front_default){
       this.male.front = this.pokemonDetail.sprites.front_shiny;
-      this.male.back = this.pokemonDetail.sprites.front_shiny;
+      this.male.back = this.pokemonDetail.sprites.back_shiny;
       this.female.front = this.pokemonDetail.sprites.front_shiny_female;
       this.female.back = this.pokemonDetail.sprites.back_shiny_female;
     }

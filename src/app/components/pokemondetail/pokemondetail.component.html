@@ -19,6 +19,7 @@
                     <img [src]="male.back" class="back">
                     <p class="names">Male</p>
                 </div>
+                
                 <div class="female">
                     <img [src]="female.front" *ngIf="female.front != null" class="front">
                     <img [src]="female.back" *ngIf="female.back != null" class="back">
@@ -58,6 +59,13 @@
                         <div class="col-sm">
                             <h4>Height:</h4>
                             <span class="capitalize">{{height}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" (click)="changeImages()" class="btn btn-dark shiny">
+                                <fa-icon [icon]="faStar"></fa-icon>
+                            </button>
                         </div>
                     </div>
                 </div>
